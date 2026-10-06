@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="sdb-basic" name="Basic" version="2.0" _section="Source">
+  <metadata>
+    <property name="globs">*.bas;*.cls</property>
+    <property name="line-comment-start">'</property>
+  </metadata>
+  <styles>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="builtin" name="Built-in" map-to="def:builtin"/>
+    <style id="number" name="Number" map-to="def:number"/>
+    <style id="date" name="Date" map-to="def:special-constant"/>
+    <style id="constant" name="Constant" map-to="def:special-constant"/>
+  </styles>
+  <default-regex-options case-sensitive="false"/>
+  <definitions>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true">
+      <start>'|\bRem\b</start>
+    </context>
+    <context id="string" style-ref="string" end-at-line-end="true">
+      <start>"</start>
+      <end>"</end>
+    </context>
+    <context id="date" style-ref="date">
+      <match>#[0-9/:\- APMapm]+#</match>
+    </context>
+    <context id="number" style-ref="number">
+      <match>(\b[0-9]+(\.[0-9]+)?([eE][-+]?[0-9]+)?|&amp;[Hh][0-9A-Fa-f]+)\b</match>
+    </context>
+    <context id="keywords" style-ref="keyword">
+      <keyword>AddressOf</keyword><keyword>And</keyword><keyword>As</keyword><keyword>ByRef</keyword><keyword>ByVal</keyword>
+      <keyword>Call</keyword><keyword>Case</keyword><keyword>Const</keyword><keyword>Dim</keyword><keyword>Do</keyword>
+      <keyword>Each</keyword><keyword>Else</keyword><keyword>ElseIf</keyword><keyword>End</keyword><keyword>Enum</keyword>
+      <keyword>Eqv</keyword><keyword>Error</keyword><keyword>Exit</keyword><keyword>For</keyword><keyword>Function</keyword>
+      <keyword>Get</keyword><keyword>GoTo</keyword><keyword>If</keyword><keyword>Imp</keyword><keyword>In</keyword>
+      <keyword>Is</keyword><keyword>Let</keyword><keyword>Like</keyword><keyword>Loop</keyword><keyword>Mod</keyword>
+      <keyword>New</keyword><keyword>Next</keyword><keyword>Not</keyword><keyword>On</keyword><keyword>Option</keyword>
+      <keyword>Optional</keyword><keyword>Or</keyword><keyword>ParamArray</keyword><keyword>Preserve</keyword><keyword>Private</keyword>
+      <keyword>Property</keyword><keyword>Public</keyword><keyword>ReDim</keyword><keyword>Resume</keyword><keyword>Select</keyword>
+      <keyword>Set</keyword><keyword>Static</keyword><keyword>Step</keyword><keyword>Stop</keyword><keyword>Sub</keyword>
+      <keyword>Then</keyword><keyword>To</keyword><keyword>TypeOf</keyword><keyword>Until</keyword><keyword>Wend</keyword>
+      <keyword>While</keyword><keyword>With</keyword><keyword>Xor</keyword><keyword>Explicit</keyword><keyword>Compare</keyword>
+    </context>
+    <context id="types" style-ref="type">
+      <keyword>Boolean</keyword><keyword>Byte</keyword><keyword>Currency</keyword><keyword>Date</keyword><keyword>Double</keyword>
+      <keyword>Integer</keyword><keyword>Long</keyword><keyword>Object</keyword><keyword>Single</keyword><keyword>String</keyword>
+      <keyword>Variant</keyword><keyword>Collection</keyword><keyword>Recordset</keyword><keyword>Database</keyword>
+    </context>
+    <context id="constants" style-ref="constant">
+      <keyword>True</keyword><keyword>False</keyword><keyword>Null</keyword><keyword>Nothing</keyword><keyword>Empty</keyword><keyword>Me</keyword>
+    </context>
+    <context id="builtins" style-ref="builtin">
+      <keyword>DoCmd</keyword><keyword>CurrentDb</keyword><keyword>Forms</keyword><keyword>Reports</keyword><keyword>TempVars</keyword>
+      <keyword>MsgBox</keyword><keyword>InputBox</keyword><keyword>DLookup</keyword><keyword>DCount</keyword><keyword>DSum</keyword>
+      <keyword>Nz</keyword><keyword>IIf</keyword><keyword>Format</keyword><keyword>Err</keyword><keyword>Debug</keyword>
+    </context>
+    <context id="sdb-basic" class="no-spell-check">
+      <include>
+        <context ref="line-comment"/>
+        <context ref="string"/>
+        <context ref="date"/>
+        <context ref="number"/>
+        <context ref="keywords"/>
+        <context ref="types"/>
+        <context ref="constants"/>
+        <context ref="builtins"/>
+      </include>
+    </context>
+  </definitions>
+</language>

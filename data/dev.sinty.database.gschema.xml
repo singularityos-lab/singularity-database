@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="dev.sinty.database" path="/dev/sinty/database/">
+    <key name="new-database-folder" type="s">
+      <default>''</default>
+      <summary>Folder where new databases are created, empty for the Documents folder</summary>
+    </key>
+    <key name="row-density" type="s">
+      <choices>
+        <choice value="compact"/>
+        <choice value="standard"/>
+        <choice value="comfortable"/>
+      </choices>
+      <default>'standard'</default>
+      <summary>Height of datasheet rows</summary>
+    </key>
+    <key name="show-gridlines" type="b">
+      <default>true</default>
+      <summary>Draw gridlines in datasheets</summary>
+    </key>
+    <key name="alternate-rows" type="b">
+      <default>true</default>
+      <summary>Shade every other row in datasheets</summary>
+    </key>
+    <key name="confirm-delete" type="b">
+      <default>true</default>
+      <summary>Ask before deleting records</summary>
+    </key>
+    <key name="reopen-last" type="b">
+      <default>false</default>
+      <summary>Open the last database at startup</summary>
+    </key>
+    <key name="last-database" type="s">
+      <default>''</default>
+      <summary>Path of the last opened database</summary>
+    </key>
+    <key name="sql-color-scheme" type="s">
+      <default>'auto'</default>
+      <summary>Color scheme of the SQL editor</summary>
+    </key>
+    <key name="report-paper" type="s">
+      <choices>
+        <choice value="a4"/>
+        <choice value="letter"/>
+        <choice value="legal"/>
+        <choice value="a3"/>
+      </choices>
+      <default>'a4'</default>
+      <summary>Default paper size for new reports</summary>
+    </key>
+    <key name="sidebar-visible" type="b">
+      <default>true</default>
+      <summary>Show the navigation pane</summary>
+    </key>
+  </schema>
+</schemalist>

@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Database
+GenericName=Database
+Comment=Build databases with tables, queries, forms and reports
+Keywords=database;table;query;form;report;sql;sqlite;access;records;
+Exec=singularity-database %f
+Icon=dev.sinty.database
+Terminal=false
+Type=Application
+Categories=Office;Database;
+MimeType=application/x-singularity-database;application/vnd.sqlite3;application/x-sqlite3;application/x-msaccess;application/vnd.ms-access;application/msaccess;
+StartupWMClass=dev.sinty.database
+StartupNotify=true
+DBusActivatable=false
+Actions=new-database;
+X-Singularity-Dock-Recent=true
+
+[Desktop Action new-database]
+Name=New Database
+Exec=singularity-database --new

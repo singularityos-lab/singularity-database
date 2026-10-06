@@ -1,0 +1,86 @@
+{
+    "schema-id": "dev.sinty.database",
+    "settings": [
+        {
+            "key": "row-density",
+            "label": "Row Height",
+            "type": "string",
+            "widget": "combo",
+            "options": [
+                {
+                    "id": "compact",
+                    "label": "Compact"
+                },
+                {
+                    "id": "standard",
+                    "label": "Standard"
+                },
+                {
+                    "id": "comfortable",
+                    "label": "Comfortable"
+                }
+            ]
+        },
+        {
+            "key": "show-gridlines",
+            "label": "Show Gridlines",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "alternate-rows",
+            "label": "Shade Alternate Rows",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "confirm-delete",
+            "label": "Ask Before Deleting Records",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "reopen-last",
+            "label": "Reopen Last Database at Startup",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "report-paper",
+            "label": "Report Paper Size",
+            "type": "string",
+            "widget": "combo",
+            "options": [
+                {
+                    "id": "a4",
+                    "label": "A4"
+                },
+                {
+                    "id": "letter",
+                    "label": "Letter"
+                },
+                {
+                    "id": "legal",
+                    "label": "Legal"
+                },
+                {
+                    "id": "a3",
+                    "label": "A3"
+                }
+            ]
+        },
+        {
+            "key": "sql-color-scheme",
+            "label": "SQL Color Scheme",
+            "type": "string",
+            "widget": "color-scheme-selector",
+            "theme-set": "edit"
+        },
+        {
+            "key": "new-database-folder",
+            "label": "Folder for New Databases",
+            "type": "string",
+            "widget": "entry"
+        }
+    ]
+}

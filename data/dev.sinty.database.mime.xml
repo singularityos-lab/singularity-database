@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-singularity-database">
+    <comment>Singularity database</comment>
+    <sub-class-of type="application/vnd.sqlite3"/>
+    <generic-icon name="x-office-database"/>
+    <glob pattern="*.sdb"/>
+  </mime-type>
+</mime-info>

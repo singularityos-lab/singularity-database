@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/dev/sinty/database/icons/scalable/actions">
+    <file alias="db-field-add-symbolic.svg">symbolic/db-field-add-symbolic.svg</file>
+    <file alias="db-fields-symbolic.svg">symbolic/db-fields-symbolic.svg</file>
+    <file alias="db-filter-symbolic.svg">symbolic/db-filter-symbolic.svg</file>
+    <file alias="db-first-symbolic.svg">symbolic/db-first-symbolic.svg</file>
+    <file alias="db-form-symbolic.svg">symbolic/db-form-symbolic.svg</file>
+    <file alias="db-group-symbolic.svg">symbolic/db-group-symbolic.svg</file>
+    <file alias="db-key-symbolic.svg">symbolic/db-key-symbolic.svg</file>
+    <file alias="db-last-symbolic.svg">symbolic/db-last-symbolic.svg</file>
+    <file alias="db-layout-symbolic.svg">symbolic/db-layout-symbolic.svg</file>
+    <file alias="db-query-symbolic.svg">symbolic/db-query-symbolic.svg</file>
+    <file alias="db-record-new-symbolic.svg">symbolic/db-record-new-symbolic.svg</file>
+    <file alias="db-relationship-symbolic.svg">symbolic/db-relationship-symbolic.svg</file>
+    <file alias="db-report-symbolic.svg">symbolic/db-report-symbolic.svg</file>
+    <file alias="db-run-symbolic.svg">symbolic/db-run-symbolic.svg</file>
+    <file alias="db-sort-symbolic.svg">symbolic/db-sort-symbolic.svg</file>
+    <file alias="db-sql-symbolic.svg">symbolic/db-sql-symbolic.svg</file>
+    <file alias="db-table-symbolic.svg">symbolic/db-table-symbolic.svg</file>
+    <file alias="db-totals-symbolic.svg">symbolic/db-totals-symbolic.svg</file>
+    <file alias="db-type-attachment-symbolic.svg">symbolic/db-type-attachment-symbolic.svg</file>
+    <file alias="db-type-boolean-symbolic.svg">symbolic/db-type-boolean-symbolic.svg</file>
+    <file alias="db-type-choice-symbolic.svg">symbolic/db-type-choice-symbolic.svg</file>
+    <file alias="db-type-currency-symbolic.svg">symbolic/db-type-currency-symbolic.svg</file>
+    <file alias="db-type-date-symbolic.svg">symbolic/db-type-date-symbolic.svg</file>
+    <file alias="db-type-email-symbolic.svg">symbolic/db-type-email-symbolic.svg</file>
+    <file alias="db-type-link-symbolic.svg">symbolic/db-type-link-symbolic.svg</file>
+    <file alias="db-type-longtext-symbolic.svg">symbolic/db-type-longtext-symbolic.svg</file>
+    <file alias="db-type-number-symbolic.svg">symbolic/db-type-number-symbolic.svg</file>
+    <file alias="db-type-percent-symbolic.svg">symbolic/db-type-percent-symbolic.svg</file>
+    <file alias="db-type-phone-symbolic.svg">symbolic/db-type-phone-symbolic.svg</file>
+    <file alias="db-type-text-symbolic.svg">symbolic/db-type-text-symbolic.svg</file>
+    <file alias="db-view-calendar-symbolic.svg">symbolic/db-view-calendar-symbolic.svg</file>
+    <file alias="db-view-gallery-symbolic.svg">symbolic/db-view-gallery-symbolic.svg</file>
+    <file alias="db-view-grid-symbolic.svg">symbolic/db-view-grid-symbolic.svg</file>
+    <file alias="db-view-kanban-symbolic.svg">symbolic/db-view-kanban-symbolic.svg</file>
+    <file alias="db-view-symbolic.svg">symbolic/db-view-symbolic.svg</file>
+    <file alias="db-function-symbolic.svg">symbolic/db-function-symbolic.svg</file>
+    <file alias="db-trigger-symbolic.svg">symbolic/db-trigger-symbolic.svg</file>
+    <file alias="db-sequence-symbolic.svg">symbolic/db-sequence-symbolic.svg</file>
+    <file alias="db-index-symbolic.svg">symbolic/db-index-symbolic.svg</file>
+    <file alias="db-server-symbolic.svg">symbolic/db-server-symbolic.svg</file>
+    <file alias="db-users-symbolic.svg">symbolic/db-users-symbolic.svg</file>
+    <file alias="db-activity-symbolic.svg">symbolic/db-activity-symbolic.svg</file>
+    <file alias="db-connection-symbolic.svg">symbolic/db-connection-symbolic.svg</file>
+    <file alias="db-schema-symbolic.svg">symbolic/db-schema-symbolic.svg</file>
+    <file alias="db-stop-symbolic.svg">symbolic/db-stop-symbolic.svg</file>
+    <file alias="db-explain-symbolic.svg">symbolic/db-explain-symbolic.svg</file>
+    <file alias="db-history-symbolic.svg">symbolic/db-history-symbolic.svg</file>
+    <file alias="db-snippet-symbolic.svg">symbolic/db-snippet-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/dev/sinty/database/language-specs">
+    <file alias="sdb-basic.lang">lang/sdb-basic.lang</file>
+  </gresource>
+</gresources>
