@@ -43,6 +43,8 @@ namespace Singularity.Apps.Database {
         public signal void schema_changed ();
         public signal void data_changed (string table);
         public signal void history_changed ();
+        public signal void data_recorded (string[] stmts);
+        public signal void design_recorded ();
 
         public bool can_undo { get { return undo_stack.size > 0; } }
         public bool can_redo { get { return redo_stack.size > 0; } }
@@ -844,6 +846,7 @@ namespace Singularity.Apps.Database {
                 push_undo (entry);
             }
             schema_changed ();
+            design_recorded ();
         }
 
         private void push_undo (UndoEntry e) {
@@ -868,6 +871,30 @@ namespace Singularity.Apps.Database {
             e.undo_sql = undo_sql;
             e.redo_sql = redo_sql;
             push_undo (e);
+            data_recorded (redo_sql);
+        }
+
+        public void apply_remote_sql (string[] stmts) throws Error {
+            bool was = recording;
+            recording = false;
+            try {
+                run_script (stmts);
+            } finally {
+                recording = was;
+            }
+            data_changed ("");
+        }
+
+        public Bytes export_copy () throws Error {
+            string tmp = Path.build_filename (Environment.get_tmp_dir (), "database-share-%s.db".printf (Uuid.string_random ()));
+            try {
+                exec ("VACUUM INTO '%s'".printf (tmp.replace ("'", "''")));
+                uint8[] data;
+                FileUtils.get_data (tmp, out data);
+                return new Bytes (data);
+            } finally {
+                FileUtils.remove (tmp);
+            }
         }
 
         private Gee.ArrayList<Snapshot> swap (Gee.ArrayList<Snapshot> target) throws Error {
@@ -919,9 +946,11 @@ namespace Singularity.Apps.Database {
                 e.after = swap (e.before);
                 e.before = null;
                 schema_changed ();
+                design_recorded ();
             } else {
                 run_script (e.undo_sql);
                 data_changed ("");
+                data_recorded (e.undo_sql);
             }
             undo_stack.remove_at (undo_stack.size - 1);
             redo_stack.add (e);
@@ -935,9 +964,11 @@ namespace Singularity.Apps.Database {
                 e.before = swap (e.after);
                 e.after = null;
                 schema_changed ();
+                design_recorded ();
             } else {
                 run_script (e.redo_sql);
                 data_changed ("");
+                data_recorded (e.redo_sql);
             }
             redo_stack.remove_at (redo_stack.size - 1);
             undo_stack.add (e);

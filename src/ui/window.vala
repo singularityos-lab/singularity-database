@@ -227,6 +227,28 @@ namespace Singularity.Apps.Database {
             track ("search", search_bubble);
             var save = add_bubble_suggested (_("Save"), () => run ("save"));
             track ("save", save);
+            if (Singularity.Collab.Client.installed ()) {
+                Gtk.Widget? together = null;
+                together = add_bubble_icon ("system-users-symbolic", _("Work Together"), () => {
+                    if (DatabaseLive.of (this) != null) {
+                        var m = new ContextMenu (together);
+                        if (DatabaseLive.of (this).session.collab_hosting) m.add_item (_("Invite More People…"), "system-users-symbolic", () => DatabaseLive.share (this, together));
+                        m.add_item (_("Stop Working Together"), "process-stop-symbolic", () => DatabaseLive.stop (this));
+                        m.closed.connect (() => Idle.add (() => {
+                            m.unparent ();
+                            return Source.REMOVE;
+                        }));
+                        m.popup ();
+                        return;
+                    }
+                    if (!DatabaseLive.supported (this)) {
+                        toast (_("Encrypted databases cannot be shared this way"));
+                        return;
+                    }
+                    DatabaseLive.share (this, together);
+                });
+                track ("together", together);
+            }
         }
 
         private RibbonButton anchored (RibbonContext c, string name, string icon, string label, string? action, bool with_label = false) {
@@ -578,6 +600,7 @@ namespace Singularity.Apps.Database {
             if (db != null) {
                 wanted.add ("back");
                 wanted.add ("tabs");
+                if (Singularity.Collab.Client.installed ()) wanted.add ("together");
             }
             if (current != null) {
                 foreach (string b in current.bubbles ()) wanted.add (b);
@@ -653,6 +676,10 @@ namespace Singularity.Apps.Database {
             var dlg = new ConfirmDialog (app, title, "dialog-error", message, _("OK"), ConfirmDialog.ActionStyle.SUGGESTED);
             dlg.transient_for = this;
             dlg.present ();
+        }
+
+        public void notify_live (string text) {
+            toast (text);
         }
 
         public void toast (string text, string? button = null, owned Callback? cb = null) {

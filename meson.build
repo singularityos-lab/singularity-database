@@ -146,6 +146,7 @@ ui = files(
   'src/ui/app.vala',
   'src/ui/widgets.vala',
   'src/ui/window.vala',
+  'src/ui/live_db.vala',
   'src/ui/welcome.vala',
   'src/ui/datasheet.vala',
   'src/ui/table_page.vala',
@@ -209,3 +210,6 @@ configure_file(
 install_data('data/icons/dev.sinty.database.svg',
   install_dir: get_option('datadir') / 'icons' / 'hicolor' / 'scalable' / 'apps'
 )
+
+install_data('data/capabilities/dev.sinty.Collab.Database1.ini',
+  install_dir: get_option('datadir') / 'singularity' / 'capabilities')
