@@ -808,7 +808,8 @@ namespace Singularity.Apps.Database {
                     lab.kind = "label";
                     lab.section = "detail";
                     lab.name = "L%d".printf (ci);
-                    lab.caption = c.label != "" ? c.label : (f != null ? f.label () : c.display_name ());
+                    if (c.label != "") lab.caption = c.label;
+                    else lab.caption = f != null ? f.label () : c.display_name ();
                     lab.x = x;
                     lab.y = y;
                     lab.w = w;
@@ -830,7 +831,8 @@ namespace Singularity.Apps.Database {
                     cl.kind = "label";
                     cl.section = "detail";
                     cl.name = "L%d".printf (ci);
-                    cl.caption = c.label != "" ? c.label : (f != null ? f.label () : c.display_name ());
+                    if (c.label != "") cl.caption = c.label;
+                    else cl.caption = f != null ? f.label () : c.display_name ();
                     cl.x = x + 14;
                     cl.y = vy - 1;
                     cl.w = w - 14;
