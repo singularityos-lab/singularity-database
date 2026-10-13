@@ -570,9 +570,9 @@ namespace Singularity.Apps.Database {
 
         public void popup_at_bubble (Popover pop, string name) {
             var anchor = anchors.has_key (name) ? anchors[name] : bubble_map[name];
-            pop.set_parent (content_stack);
+            pop.set_parent (content_area);
             Graphene.Rect bounds = Graphene.Rect ();
-            if (anchor != null && anchor.get_mapped () && anchor.compute_bounds (content_stack, out bounds)) {
+            if (anchor != null && anchor.get_mapped () && anchor.compute_bounds (content_area, out bounds)) {
                 var rect = Gdk.Rectangle ();
                 rect.x = (int) bounds.origin.x;
                 rect.y = (int) bounds.origin.y;
