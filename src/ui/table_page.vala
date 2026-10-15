@@ -887,7 +887,7 @@ namespace Singularity.Apps.Database {
             try {
                 var st = new ViewState ();
                 st.hidden.add (rel.columns[0]);
-                st.filters.add (new FilterSpec (rel.columns[0], FilterOp.EQUALS, "\u0001"));
+                st.filters.add (new FilterSpec (rel.columns[0], FilterOp.EQUALS, "\x01"));
                 var csrc = new RecordSource (db, rel.table, st);
                 sub_sheet = new DatasheetView ();
                 sub_sheet.set_source (csrc);
@@ -915,7 +915,7 @@ namespace Singularity.Apps.Database {
                 if (idx >= 0) mv = row.get (idx);
             }
             var spec = sub_sheet.src.state.filters[0];
-            spec.value = mv.is_null ? "\u0001" : mv.to_string ();
+            spec.value = mv.is_null ? "\x01" : mv.to_string ();
             sub_sheet.src.invalidate ();
             sub_sheet.defaults.clear ();
             if (!mv.is_null) sub_sheet.defaults[sub_rel.columns[0]] = mv;
