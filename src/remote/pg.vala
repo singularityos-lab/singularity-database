@@ -89,14 +89,14 @@ namespace Singularity.Apps.Database {
         }
 
         public uint8[] read_bytes (int n) {
-            if (n < 0 || pos + n > data.length) n = int.max (0, data.length - pos);
+            if (n < 0 || (int64) pos + n > data.length) n = int.max (0, data.length - pos);
             uint8[] r = data[pos:pos + n];
             pos += n;
             return r;
         }
 
         public string read_text (int n) {
-            if (n < 0 || pos + n > data.length) n = int.max (0, data.length - pos);
+            if (n < 0 || (int64) pos + n > data.length) n = int.max (0, data.length - pos);
             var sb = new StringBuilder ();
             sb.append_len ((string) ((uint8*) data + pos), n);
             pos += n;
@@ -743,6 +743,7 @@ namespace Singularity.Apps.Database {
 
         private Row parse_row (PgMessage m, Gee.List<ColumnMeta> cols) {
             int n = m.read_int16 ();
+            if (n < 0) n = 0;
             DbValue[] vals = new DbValue[n];
             for (int i = 0; i < n; i++) {
                 int32 len = m.read_int32 ();

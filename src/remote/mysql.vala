@@ -84,7 +84,7 @@ namespace Singularity.Apps.Database {
         }
 
         private void need (int n) throws RemoteError {
-            if (pos + n > data.length) throw new RemoteError.PROTOCOL (_("The server sent a truncated packet."));
+            if (n < 0 || (int64) pos + n > data.length) throw new RemoteError.PROTOCOL (_("The server sent a truncated packet."));
         }
 
         public uint8 u8 () throws RemoteError {
@@ -143,6 +143,7 @@ namespace Singularity.Apps.Database {
         public uint8[]? lenenc_bytes () throws RemoteError {
             uint64 n = lenenc_int ();
             if (last_null) return null;
+            if (n > int.MAX) throw new RemoteError.PROTOCOL (_("The server sent a truncated packet."));
             return take ((int) n);
         }
 
@@ -635,7 +636,7 @@ namespace Singularity.Apps.Database {
             int first = d[pos++];
             if (first < 0x80) return first;
             int n = first & 0x7f;
-            if (n > 4 || pos + n > d.length) throw new RemoteError.PROTOCOL (_("The server public key is not valid."));
+            if (n > 3 || pos + n > d.length) throw new RemoteError.PROTOCOL (_("The server public key is not valid."));
             int len = 0;
             for (int i = 0; i < n; i++) len = (len << 8) | d[pos++];
             return len;
@@ -645,7 +646,7 @@ namespace Singularity.Apps.Database {
             if (pos >= d.length || d[pos] != tag) throw new RemoteError.PROTOCOL (_("The server public key is not valid."));
             pos++;
             int len = der_len (d, ref pos);
-            if (pos + len > d.length) throw new RemoteError.PROTOCOL (_("The server public key is not valid."));
+            if ((int64) pos + len > d.length) throw new RemoteError.PROTOCOL (_("The server public key is not valid."));
             uint8[] out_b = d[pos:pos + len];
             pos += len;
             return out_b;
