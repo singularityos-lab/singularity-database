@@ -63,7 +63,7 @@ namespace Singularity.Apps.Database {
             tmpl.activate.connect ((p) => target_window ().new_from_template (p.get_string ()));
             add_action (tmpl);
             app_action ("quit", () => {
-                foreach (var w in get_windows ()) w.close ();
+                foreach (var w in get_windows ().copy ()) w.close ();
             });
             app_action ("settings", () => {
                 try {
@@ -235,7 +235,7 @@ namespace Singularity.Apps.Database {
             win.present ();
             win.start (password, ssh_password);
             var idle = new Gee.ArrayList<DatabaseWindow> ();
-            foreach (var w in get_windows ()) {
+            foreach (var w in get_windows ().copy ()) {
                 var dw = w as DatabaseWindow;
                 if (dw != null && dw.db == null) idle.add (dw);
             }
