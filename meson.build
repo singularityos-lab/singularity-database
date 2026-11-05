@@ -146,6 +146,7 @@ ui = files(
   'src/ui/app.vala',
   'src/ui/widgets.vala',
   'src/ui/window.vala',
+  'src/ui/agent_intents.vala',
   'src/ui/live_db.vala',
   'src/ui/welcome.vala',
   'src/ui/datasheet.vala',

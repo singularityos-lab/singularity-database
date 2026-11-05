@@ -42,6 +42,7 @@ namespace Singularity.Apps.Database {
             var schema = SettingsSchemaSource.get_default ()?.lookup ("dev.sinty.database", true);
             if (schema != null) settings = new GLib.Settings ("dev.sinty.database");
             IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/dev/sinty/database/icons");
+            DatabaseIntents.install (this);
             var lm = GtkSource.LanguageManager.get_default ();
             string[] search = lm.get_search_path ();
             search += "resource:///dev/sinty/database/language-specs";
