@@ -95,8 +95,8 @@ namespace Singularity.Apps.Database {
         private Label conn_title;
         private Label conn_detail;
         private Image conn_icon;
-        private DropDown db_drop;
-        private DropDown schema_drop;
+        private ChoiceButton db_drop;
+        private ChoiceButton schema_drop;
         private Box db_box;
         private Box schema_box;
         private Box object_list;
@@ -224,7 +224,7 @@ namespace Singularity.Apps.Database {
             var dl = new Image.from_icon_name ("db-server-symbolic");
             dl.tooltip_text = _("Database");
             db_box.append (dl);
-            db_drop = new DropDown.from_strings ({ "" });
+            db_drop = new ChoiceButton.from_strings ({ "" });
             db_drop.hexpand = true;
             db_drop.tooltip_text = _("Database");
             db_drop.notify["selected"].connect (() => {
@@ -237,7 +237,7 @@ namespace Singularity.Apps.Database {
             var sl = new Image.from_icon_name ("db-schema-symbolic");
             sl.tooltip_text = _("Schema");
             schema_box.append (sl);
-            schema_drop = new DropDown.from_strings ({ "" });
+            schema_drop = new ChoiceButton.from_strings ({ "" });
             schema_drop.hexpand = true;
             schema_drop.tooltip_text = _("Schema");
             schema_drop.notify["selected"].connect (() => {

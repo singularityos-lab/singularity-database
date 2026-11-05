@@ -1050,7 +1050,7 @@ namespace Singularity.Apps.Database {
             title.hexpand = true;
             title.halign = Align.START;
             head.append (title);
-            var any = new DropDown.from_strings ({ _("Match All"), _("Match Any") });
+            var any = new ChoiceButton.from_strings ({ _("Match All"), _("Match Any") });
             any.selected = page.src.state.match_any ? 1 : 0;
             any.notify["selected"].connect (() => {
                 page.src.state.match_any = any.selected == 1;
@@ -1091,11 +1091,11 @@ namespace Singularity.Apps.Database {
             row.add_css_class ("db-filter-row");
             string[] names = {};
             foreach (var f in page.src.def.fields) names += f.name;
-            var field_dd = new DropDown.from_strings (names);
+            var field_dd = new ChoiceButton.from_strings (names);
             int fi = page.src.def.index_of (spec.column);
             field_dd.selected = fi >= 0 ? fi : 0;
             row.append (field_dd);
-            var op_dd = new DropDown.from_strings ({ "" });
+            var op_dd = new ChoiceButton.from_strings ({ "" });
             row.append (op_dd);
             var value = new Entry ();
             value.hexpand = true;
@@ -1201,11 +1201,11 @@ namespace Singularity.Apps.Database {
             var row = new Box (Orientation.HORIZONTAL, 6);
             string[] names = {};
             foreach (var f in page.src.def.fields) names += f.name;
-            var dd = new DropDown.from_strings (names);
+            var dd = new ChoiceButton.from_strings (names);
             int i = page.src.def.index_of (spec.column);
             dd.selected = i >= 0 ? i : 0;
             row.append (dd);
-            var dir = new DropDown.from_strings ({ _("A to Z"), _("Z to A") });
+            var dir = new ChoiceButton.from_strings ({ _("A to Z"), _("Z to A") });
             dir.selected = spec.descending ? 1 : 0;
             row.append (dir);
             var remove = new Button.from_icon_name ("list-remove-symbolic");
@@ -1241,7 +1241,7 @@ namespace Singularity.Apps.Database {
             foreach (var f in page.src.def.fields) {
                 if (f.field_type != FieldType.ATTACHMENT && f.field_type != FieldType.LONG_TEXT) names += f.name;
             }
-            var dd = new DropDown.from_strings (names);
+            var dd = new ChoiceButton.from_strings (names);
             for (int i = 1; i < names.length; i++) {
                 if (names[i] == page.src.state.group_by) dd.selected = i;
             }

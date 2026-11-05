@@ -336,7 +336,7 @@ namespace Singularity.Apps.Database {
             });
             focus_selects (name, i);
             row.append (name);
-            var type = new DropDown.from_strings (type_labels);
+            var type = new ChoiceButton.from_strings (type_labels);
             type.width_request = W_TYPE;
             type.hexpand = false;
             type.add_css_class ("db-cell");

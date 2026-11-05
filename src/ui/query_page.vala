@@ -8,7 +8,7 @@ namespace Singularity.Apps.Database {
         private weak QueryPage page;
         private DiagramCanvas canvas;
         private Grid grid;
-        private DropDown type_dd;
+        private ChoiceButton type_dd;
         private Entry target;
         private CheckButton totals;
         private CheckButton distinct;
@@ -42,7 +42,7 @@ namespace Singularity.Apps.Database {
             bar.append (tl);
             string[] types = {};
             foreach (var qt in QueryType.ALL) types += qt.label ();
-            type_dd = new DropDown.from_strings (types);
+            type_dd = new ChoiceButton.from_strings (types);
             type_dd.notify["selected"].connect (() => {
                 if (building) return;
                 design.query_type = QueryType.ALL[type_dd.selected];
@@ -421,7 +421,7 @@ namespace Singularity.Apps.Database {
                 var col = design.columns[ci];
                 int r = 0;
                 var fbox = new Box (Orientation.HORIZONTAL, 2);
-                var field = new DropDown.from_strings (choices);
+                var field = new ChoiceButton.from_strings (choices);
                 field.width_request = 170;
                 uint sel = choices.length - 1;
                 for (int k = 0; k < tables_of.size; k++) {
@@ -491,7 +491,7 @@ namespace Singularity.Apps.Database {
                 if ((design.totals || xtab) && !upd && !del && !app) {
                     string[] aggs = {};
                     foreach (var a in Aggregate.ALL) aggs += a.label ();
-                    var total = new DropDown.from_strings (aggs);
+                    var total = new ChoiceButton.from_strings (aggs);
                     for (int k = 0; k < Aggregate.ALL.length; k++) if (Aggregate.ALL[k] == col.total) total.selected = k;
                     total.notify["selected"].connect (() => {
                         if (building) return;
@@ -502,7 +502,7 @@ namespace Singularity.Apps.Database {
                 }
                 if (xtab) {
                     string[] roles = { "", "row", "column", "value" };
-                    var role = new DropDown.from_strings ({ _("Not Shown"), _("Row Heading"), _("Column Heading"), _("Value") });
+                    var role = new ChoiceButton.from_strings ({ _("Not Shown"), _("Row Heading"), _("Column Heading"), _("Value") });
                     for (int k = 0; k < roles.length; k++) if (roles[k] == col.crosstab) role.selected = k;
                     role.notify["selected"].connect (() => {
                         if (building) return;
@@ -518,7 +518,7 @@ namespace Singularity.Apps.Database {
                     grid.attach (role, ci + 1, r++, 1, 1);
                 }
                 if (!upd && !del && !app) {
-                    var sort = new DropDown.from_strings ({ _("Not Sorted"), _("Ascending"), _("Descending") });
+                    var sort = new ChoiceButton.from_strings ({ _("Not Sorted"), _("Ascending"), _("Descending") });
                     sort.selected = (uint) col.sort;
                     sort.notify["selected"].connect (() => {
                         if (building) return;
@@ -550,7 +550,7 @@ namespace Singularity.Apps.Database {
                 if (app) {
                     string[] opts = { _("Do Not Append") };
                     foreach (string t in target_cols) opts += t;
-                    var to = new DropDown.from_strings (opts);
+                    var to = new ChoiceButton.from_strings (opts);
                     for (int k = 1; k < opts.length; k++) if (opts[k] == col.append_to) to.selected = k;
                     to.notify["selected"].connect (() => {
                         if (building) return;
@@ -702,7 +702,7 @@ namespace Singularity.Apps.Database {
                 targets += _("Server: %s").printf (c.name);
                 ids += c.id;
             }
-            var target_dd = new DropDown.from_strings (targets);
+            var target_dd = new ChoiceButton.from_strings (targets);
             for (int i = 0; i < ids.length; i++) if (ids[i] != "" && ids[i] == pass_through) target_dd.selected = i;
             target_dd.notify["selected"].connect (() => {
                 pass_through = ids[target_dd.selected];

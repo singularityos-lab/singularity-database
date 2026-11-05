@@ -143,7 +143,7 @@ namespace Singularity.Apps.Database {
     }
 
     public class ChoiceControl : FieldControl {
-        private DropDown dd;
+        private ChoiceButton dd;
         private Gee.ArrayList<DbValue> values = new Gee.ArrayList<DbValue> ();
 
         public ChoiceControl (Field f, RecordSource src) {
@@ -161,7 +161,7 @@ namespace Singularity.Apps.Database {
                     values.add (r.get (0));
                 }
             }
-            dd = new DropDown.from_strings (labels);
+            dd = new ChoiceButton.from_strings (labels);
             dd.enable_search = labels.length > 12;
             dd.expression = new PropertyExpression (typeof (StringObject), null, "string");
             dd.hexpand = true;

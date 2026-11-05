@@ -124,10 +124,10 @@ namespace Singularity.Apps.Database {
             return s;
         }
 
-        public DropDown add_choice (string label, string[] items, int selected, owned ChoiceChanged cb) {
+        public Singularity.Widgets.ChoiceButton add_choice (string label, string[] items, int selected, owned ChoiceChanged cb) {
             string[] safe = {};
             foreach (string it in items) safe += it;
-            var d = new DropDown.from_strings (safe);
+            var d = new Singularity.Widgets.ChoiceButton.from_strings (safe);
             if (selected >= 0 && selected < items.length) d.selected = selected;
             d.enable_search = items.length > 12;
             d.expression = new PropertyExpression (typeof (StringObject), null, "string");

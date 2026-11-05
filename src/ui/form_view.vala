@@ -97,7 +97,7 @@ namespace Singularity.Apps.Database {
     }
 
     public class ComboControl : FieldControl {
-        private DropDown dd;
+        private ChoiceButton dd;
         private Gee.ArrayList<DbValue> values = new Gee.ArrayList<DbValue> ();
         private Gee.ArrayList<Row> rows = new Gee.ArrayList<Row> ();
         private Gtk.ListBox? list;
@@ -137,7 +137,7 @@ namespace Singularity.Apps.Database {
                 widget = sc;
                 return;
             }
-            dd = new DropDown.from_strings (labels);
+            dd = new ChoiceButton.from_strings (labels);
             dd.enable_search = true;
             dd.expression = new PropertyExpression (typeof (StringObject), null, "string");
             dd.hexpand = true;

@@ -76,7 +76,7 @@ namespace Singularity.Apps.Database {
             Gee.ArrayList<MacroAction> acts;
             string[] labels = { _("Add New Action") };
             foreach (string l in action_labels (out acts)) labels += l;
-            var dd = new DropDown.from_strings (labels);
+            var dd = new ChoiceButton.from_strings (labels);
             dd.enable_search = true;
             dd.expression = new PropertyExpression (typeof (StringObject), null, "string");
             dd.hexpand = true;

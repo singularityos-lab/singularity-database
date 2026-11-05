@@ -154,7 +154,7 @@ namespace Singularity.Apps.Database {
             var dlg = Dialogs.make (win, _("Import \"%s\"").printf (Path.get_basename (path)), 760, 680);
             var box = Dialogs.body (dlg);
             DataTable current = tables[0];
-            var types = new Gee.ArrayList<DropDown> ();
+            var types = new Gee.ArrayList<ChoiceButton> ();
             var source_g = new PreferencesGroup (_("Source"), null);
             SelectionRow? sheet = null;
             if (tables.size > 1) {
@@ -232,7 +232,7 @@ namespace Singularity.Apps.Database {
                     h.halign = Align.START;
                     h.margin_start = h.margin_top = 6;
                     preview.attach (h, col, 0, 1, 1);
-                    var dd = new DropDown.from_strings (type_names);
+                    var dd = new ChoiceButton.from_strings (type_names);
                     var inferred = Transfer.infer_column (current, col);
                     for (int k = 0; k < type_names.length; k++) if (type_names[k] == inferred.label ()) dd.selected = k;
                     preview.attach (dd, col, 1, 1, 1);

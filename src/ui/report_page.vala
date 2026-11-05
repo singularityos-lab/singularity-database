@@ -769,7 +769,7 @@ namespace Singularity.Apps.Database {
                 box.append (width);
                 string[] safe = {};
                 foreach (string x in tl) safe += x;
-                var total = new DropDown.from_strings (safe);
+                var total = new ChoiceButton.from_strings (safe);
                 total.selected = (uint) c.total;
                 total.tooltip_text = _("Total");
                 total.notify["selected"].connect (() => {
@@ -840,7 +840,7 @@ namespace Singularity.Apps.Database {
                 int idx = i;
                 var box = new Box (Orientation.HORIZONTAL, 4);
                 string[] opts = { _("A to Z"), _("Z to A") };
-                var dir = new DropDown.from_strings (opts);
+                var dir = new ChoiceButton.from_strings (opts);
                 dir.selected = gr.descending ? 1 : 0;
                 dir.hexpand = true;
                 dir.notify["selected"].connect (() => {
