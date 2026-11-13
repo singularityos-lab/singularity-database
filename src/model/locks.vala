@@ -88,9 +88,19 @@ namespace Singularity.Apps.Database {
             });
         }
 
+        private bool present () {
+            if (ready) return true;
+            try {
+                ready = db.query_int ("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = ?", { new DbValue.text (TABLE) }) > 0;
+            } catch (Error e) {
+                return false;
+            }
+            return ready;
+        }
+
         public string? holder (string table, int64 rowid) {
             try {
-                ensure ();
+                if (!present ()) return null;
                 var rs = db.query ("SELECT owner, usr, since, host, pid, beat FROM %s WHERE tbl = ? AND rid = ?".printf (TABLE), { new DbValue.text (table), new DbValue.int (rowid) });
                 if (rs.rows.size == 0) return null;
                 var r = rs.rows[0];
@@ -102,17 +112,17 @@ namespace Singularity.Apps.Database {
         }
 
         public void release (string table, int64 rowid) throws Error {
-            ensure ();
+            if (!present ()) return;
             db.run ("DELETE FROM %s WHERE tbl = ? AND rid = ? AND owner = ?".printf (TABLE), { new DbValue.text (table), new DbValue.int (rowid), new DbValue.text (owner) });
         }
 
         public void release_all () throws Error {
-            ensure ();
+            if (!present ()) return;
             db.run ("DELETE FROM %s WHERE owner = ?".printf (TABLE), { new DbValue.text (owner) });
         }
 
         public void heartbeat () throws Error {
-            ensure ();
+            if (!present ()) return;
             db.run ("UPDATE %s SET beat = ? WHERE owner = ?".printf (TABLE), { new DbValue.int (now ()), new DbValue.text (owner) });
         }
     }

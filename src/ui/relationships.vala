@@ -598,7 +598,7 @@ namespace Singularity.Apps.Database {
             Singularity.Print.run_source.begin (win, source);
         }
 
-        private void arrange () {
+        private void arrange (bool persist = true) {
             var levels = new Gee.HashMap<string, int> ();
             var rels = db.all_relationships ();
             foreach (var b in canvas.boxes) levels[b.id] = 0;
@@ -615,7 +615,7 @@ namespace Singularity.Apps.Database {
                 if (!changed) break;
             }
             canvas.layout_levels (levels);
-            save_positions ();
+            if (persist) save_positions ();
         }
 
         private void save_positions () {
@@ -683,7 +683,7 @@ namespace Singularity.Apps.Database {
                 canvas.links.add (l);
             }
             if (missing) {
-                if (saved == null && old.size == 0) arrange ();
+                if (saved == null && old.size == 0) arrange (false);
                 else canvas.auto_layout (true);
             }
             canvas.update_size ();
