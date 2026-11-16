@@ -8,6 +8,7 @@ Icon=dev.sinty.database
 Terminal=false
 Type=Application
 Categories=Office;Database;
+X-Sinty-FormFactors=desktop;tablet;phone
 MimeType=application/x-singularity-database;application/vnd.sqlite3;application/x-sqlite3;application/x-msaccess;application/vnd.ms-access;application/msaccess;
 StartupWMClass=dev.sinty.database
 StartupNotify=true
