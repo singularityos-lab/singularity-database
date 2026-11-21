@@ -24,6 +24,17 @@ pixbuf_dep  = dependency('gdk-pixbuf-2.0')
 math_dep    = cc.find_library('m')
 nettle_dep  = dependency('nettle')
 
+gtk_dep = dependency('gtk4')
+gtksource_dep = dependency('gtksourceview-5')
+libsingularity_dep = dependency('singularity-1.0',
+  fallback: ['libsingularity', 'libsingularity_dep']
+)
+
+if not meson.is_subproject() and libsingularity_dep.type_name() == 'internal'
+  libsingularity_vapi_dir = join_paths(meson.project_build_root(), 'subprojects', 'libsingularity')
+  add_project_arguments(['--vapidir=' + libsingularity_vapi_dir], language: 'vala')
+endif
+
 core_deps = [gee_dep, gio_dep, gio_unix_dep, json_dep, sqlite_dep, xml_dep, zlib_dep, math_dep, nettle_dep]
 
 model = files(
@@ -123,17 +134,6 @@ test('servers', find_program('tests/run-server-tests.sh'),
   suite: 'servers',
   is_parallel: false,
 )
-
-gtk_dep = dependency('gtk4')
-gtksource_dep = dependency('gtksourceview-5')
-libsingularity_dep = dependency('singularity-1.0',
-  fallback: ['libsingularity', 'libsingularity_dep']
-)
-
-if not meson.is_subproject() and libsingularity_dep.type_name() == 'internal'
-  libsingularity_vapi_dir = join_paths(meson.project_build_root(), 'subprojects', 'libsingularity')
-  add_project_arguments(['--vapidir=' + libsingularity_vapi_dir], language: 'vala')
-endif
 
 gnome = import('gnome')
 resources = gnome.compile_resources(
